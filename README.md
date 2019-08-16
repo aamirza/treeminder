@@ -8,6 +8,9 @@ Keep track of your Team Treehouse (https://teamtreehouse.com/) badges or points 
 2. Fill in all the fields in between the quotation marks (")
 3. Find your Beeminder auth_token here (https://www.beeminder.com/api/v1/auth_token.json)
 4. If the Beeminder URL of your Team Treehouse goal is, for example, beeminder.com/username/**treebadges**, then the BEEMINDER_GOAL = "treebadges"
-5. Lastly, for GOAL_TYPE, write whether you prefer to track "badges" or "points". 
+5. Lastly, for GOAL_TYPE, enter whether you prefer to track "badges" or "points". 
+6. Run treeminder.py 
 
-Keep in mind that if you track badges, it will add a datapoint for every badge you have ever earned, including any badges you earned before you made your Beeminder goal.
+Keep in mind that if you track badges, it will add a datapoint for every badge you have ever earned, including any badges you've earned before you made your Beeminder goal.
+
+Happy coding!
