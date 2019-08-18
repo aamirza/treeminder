@@ -3,16 +3,10 @@ import requests
 import time
 
 from params import *
-
-
-def get_treehouse_data(username):
-    treehouse_url = "https://teamtreehouse.com/" + username + ".json"
-    response = requests.get(treehouse_url).json()
-    return response
-
+import treehouse
 
 def main():
-    treehouse_data = get_treehouse_data(TREEHOUSE_USERNAME)
+    treehouse_data = treehouse.get_data(TREEHOUSE_USERNAME)
     beeminder_url = "https://www.beeminder.com/api/v1/users/{}/goals/{}/".format(
         BEEMINDER_USERNAME, BEEMINDER_GOAL
     )
