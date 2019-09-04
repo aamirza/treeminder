@@ -1,4 +1,4 @@
-import request
+import requests
 
 def get_data(username):
     """
