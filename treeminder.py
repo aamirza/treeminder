@@ -7,9 +7,6 @@ import treehouse
 
 def main():
     treehouse_data = treehouse.get_data(TREEHOUSE_USERNAME)
-    beeminder_url = "https://www.beeminder.com/api/v1/users/{}/goals/{}/".format(
-        BEEMINDER_USERNAME, BEEMINDER_GOAL
-    )
 
     if GOAL_TYPE == "badges":
         values = {"auth_token": BEEMINDER_APIKEY,
