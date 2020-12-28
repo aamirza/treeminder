@@ -2,16 +2,15 @@ import calendar
 import requests
 import time
 
+from beeminder import Beeminder
 from params import *
 import treehouse
 
 def main():
     treehouse_data = treehouse.get_data(TREEHOUSE_USERNAME)
+    beeminder = Beeminder()
 
     if GOAL_TYPE == "badges":
-        values = {"auth_token": BEEMINDER_APIKEY,
-                  "datapoints": []}
-        beeminder_url += "datapoints/create_all.json"
         for badge in treehouse_data["badges"]:
             timestamp = calendar.timegm(time.strptime(badge["earned_date"],
                                                       "%Y-%m-%dT%H:%M:%S.000Z"))
