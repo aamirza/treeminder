@@ -1,6 +1,6 @@
 import time
 from dataclasses import dataclass
-from typing import Optional
+from typing import Optional, Union
 
 from params import BEEMINDER_GOAL, BEEMINDER_USERNAME, BEEMINDER_APIKEY
 
@@ -8,9 +8,13 @@ from params import BEEMINDER_GOAL, BEEMINDER_USERNAME, BEEMINDER_APIKEY
 @dataclass
 class Datapoint():
     value: int
-    timestamp: int = time.time()
+    timestamp: Union[int, float] = time.time()
     comment: Optional[str] = ""
     request_id: Optional[str] = ""
+
+    @property
+    def json(self):
+        return self.__dict__
 
 
 class Beeminder():
