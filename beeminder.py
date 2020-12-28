@@ -1,4 +1,16 @@
+import time
+from dataclasses import dataclass
+from typing import Optional
+
 from params import BEEMINDER_GOAL, BEEMINDER_USERNAME, BEEMINDER_APIKEY
+
+
+@dataclass
+class Datapoint():
+    value: int
+    timestamp: int = time.time()
+    comment: Optional[str] = ""
+    request_id: Optional[str] = ""
 
 
 class Beeminder():
@@ -12,5 +24,3 @@ class Beeminder():
     def goal_url(self):
         return f"https://www.beeminder.com/api/v1/users/" \
                f"{self._username}/goals/{self._goal}/"
-
-
