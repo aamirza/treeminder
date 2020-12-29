@@ -42,8 +42,6 @@ def main():
     elif GOAL_TYPE.lower() == GoalType["POINTS"]:
         datapoint = beeminder.Datapoint(value = treehouse.total_points)
         response = bee.send_datapoint(datapoint)
-    else:
-        raise InvalidGoalType("Goal type must be one of 'badges' or 'points'")
 
     return response
 
