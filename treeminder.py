@@ -12,7 +12,7 @@ class InvalidGoalType(Exception):
 
 
 def validate_goal_type():
-    if GOAL_TYPE not in GoalType:
+    if GOAL_TYPE.upper() not in GoalType:
         raise InvalidGoalType("Goal type must be one of 'badges' or 'points'")
     pass
 
