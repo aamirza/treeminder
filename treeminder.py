@@ -1,5 +1,4 @@
 import calendar
-import requests
 import time
 
 import beeminder
@@ -33,6 +32,7 @@ def badge_to_datapoint(badge):
 
 def main():
     validate_goal_type()
+
     treehouse = Treehouse()
     bee = beeminder.Beeminder()
 
