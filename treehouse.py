@@ -17,7 +17,12 @@ class Treehouse():
         return "https://teamtreehouse.com/" + self.username + ".json"
 
     def get_data(self):
-        return requests.get(self.user_data_url).json()
+        response = requests.get(self.user_data_url)
+        if response.status_code == 200:
+            return response.json()
+        else:
+            raise SystemExit(f"Error retrieving Treehouse data: "
+                             f"Response {response.status_code}")
 
     @property
     def badges(self):
