@@ -30,6 +30,16 @@ def badge_to_datapoint(badge):
     )
 
 
+def send_badges_to_beeminder(badges, bmndr):
+    datapoints = [badge_to_datapoint(badge) for badge in badges]
+    return bmndr.send_datapoints(datapoints)
+
+
+def send_points_to_beeminder(points, bmndr):
+    datapoint = beeminder.Datapoint(value=points)
+    return bmndr.send_datapoint(datapoint)
+
+
 def main():
     validate_goal_type()
 
@@ -37,14 +47,9 @@ def main():
     bee = beeminder.Beeminder()
 
     if GOAL_TYPE.lower() == GoalType["BADGES"]:
-        datapoints = [badge_to_datapoint(badge) for badge in treehouse.badges]
-        response = bee.send_datapoints(datapoints)
+        response = send_badges_to_beeminder(treehouse.badges, bee)
     elif GOAL_TYPE.lower() == GoalType["POINTS"]:
-        datapoint = beeminder.Datapoint(value = treehouse.total_points)
-        response = bee.send_datapoint(datapoint)
-    else:
-        raise InvalidGoalType("Goal type must be one of 'badges' or 'points'")
-
+        response = send_points_to_beeminder(treehouse.total_points, bee)
     return response
 
 
