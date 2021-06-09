@@ -1,10 +1,8 @@
 import requests
 
-from params import TREEHOUSE_USERNAME
-
 
 class Treehouse():
-    def __init__(self, username=TREEHOUSE_USERNAME):
+    def __init__(self, username):
         self._username = username
         self.data = self.get_data()
 

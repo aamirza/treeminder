@@ -1,0 +1,6 @@
+TREEHOUSE_USERNAME: your treehouse username here
+BEEMINDER_USERNAME: your beeminder username here
+BEEMINDER_AUTH_TOKEN: your beeminder auth token here (https://www.beeminder.com/api/v1/auth_token.json)
+BEEMINDER_GOAL_SLUG: your beeminder goal slug here
+# select either badges or points. Badges is selected by default.
+GOAL_TYPE: badges

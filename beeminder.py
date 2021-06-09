@@ -4,8 +4,6 @@ from typing import Optional, Union, List
 
 import requests
 
-from params import BEEMINDER_GOAL, BEEMINDER_USERNAME, BEEMINDER_APIKEY
-
 
 @dataclass
 class Datapoint():
@@ -20,8 +18,7 @@ class Datapoint():
 
 
 class Beeminder():
-    def __init__(self, username=BEEMINDER_USERNAME, goal=BEEMINDER_GOAL,
-                 api_key=BEEMINDER_APIKEY):
+    def __init__(self, username, goal, api_key):
         self._username = username
         self._goal = goal
         self._apikey = api_key
