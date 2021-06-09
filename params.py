@@ -1,5 +1,0 @@
-TREEHOUSE_USERNAME = "your team treehouse name here"
-BEEMINDER_USERNAME = "your beeminder username here"
-BEEMINDER_APIKEY = "your beeminder api key here"
-BEEMINDER_GOAL = "your beeminder goal slug here"
-GOAL_TYPE = "badges or points" # select either "badges" or "points"

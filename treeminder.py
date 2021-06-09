@@ -1,20 +1,31 @@
 import calendar
+import os
 import time
+
+import yaml
 
 import beeminder
 from goaltype import GoalType
-from params import GOAL_TYPE
 from treehouse import Treehouse
+
+
+PARAMS_FILE = os.path.join(os.path.dirname(__file__), "params.yaml")
 
 
 class InvalidGoalType(Exception):
     pass
 
 
-def validate_goal_type():
-    if GOAL_TYPE.upper() not in GoalType:
+def validate_goal_type(goal_type):
+    if goal_type not in GoalType:
         raise InvalidGoalType("Goal type must be one of 'badges' or 'points'")
-    pass
+    return GoalType[goal_type.upper()]
+
+
+def get_yaml_data():
+    with open(PARAMS_FILE, 'r') as params:
+        user_data = yaml.safe_load(params)
+    return user_data
 
 
 def time_to_timestamp(time_str):
@@ -41,14 +52,17 @@ def send_points_to_beeminder(points, bmndr):
 
 
 def main():
-    validate_goal_type()
+    user = get_yaml_data()
+    goal_type = validate_goal_type(user['GOAL_TYPE'])
 
-    treehouse = Treehouse()
-    bee = beeminder.Beeminder()
+    treehouse = Treehouse(username=user['TREEHOUSE_USERNAME'])
+    bee = beeminder.Beeminder(username=user['BEEMINDER_USERNAME'],
+                              goal=user['BEEMINDER_GOAL_SLUG'],
+                              api_key=user['BEEMINDER_AUTH_TOKEN'])
 
-    if GOAL_TYPE.lower() == GoalType["BADGES"]:
+    if goal_type == GoalType.BADGES:
         response = send_badges_to_beeminder(treehouse.badges, bee)
-    elif GOAL_TYPE.lower() == GoalType["POINTS"]:
+    elif goal_type == GoalType.POINTS:
         response = send_points_to_beeminder(treehouse.total_points, bee)
     return response
 
