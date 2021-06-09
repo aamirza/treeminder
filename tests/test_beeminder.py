@@ -14,7 +14,7 @@ class MyTestCase(unittest.TestCase):
 
     def test_correct_beeminder_url(self):
         self.assertEqual("https://www.beeminder.com/api/v1/users/dee/goals/badges/",
-                         beeminder.Beeminder("dee", "badges").goal_url)
+                         beeminder.Beeminder("dee", "badges", api_key="none").goal_url)
 
 
 
