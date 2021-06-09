@@ -32,7 +32,7 @@ def time_to_timestamp(time_str):
     return calendar.timegm(time.strptime(time_str, "%Y-%m-%dT%H:%M:%S.000Z"))
 
 
-def badge_to_datapoint(badge):
+def treehouse_badge_to_beeminder_datapoint(badge):
     return beeminder.Datapoint(
         value = 1,
         timestamp = time_to_timestamp(badge["earned_date"]),
@@ -41,12 +41,12 @@ def badge_to_datapoint(badge):
     )
 
 
-def send_badges_to_beeminder(badges, bmndr):
-    datapoints = [badge_to_datapoint(badge) for badge in badges]
+def send_treehouse_badges_to_beeminder(badges, bmndr):
+    datapoints = [treehouse_badge_to_beeminder_datapoint(badge) for badge in badges]
     return bmndr.send_datapoints(datapoints)
 
 
-def send_points_to_beeminder(points, bmndr):
+def send_treehouse_points_to_beeminder(points, bmndr):
     datapoint = beeminder.Datapoint(value=points)
     return bmndr.send_datapoint(datapoint)
 
@@ -61,9 +61,9 @@ def main():
                               api_key=user['BEEMINDER_AUTH_TOKEN'])
 
     if goal_type == GoalType.BADGES:
-        response = send_badges_to_beeminder(treehouse.badges, bee)
+        response = send_treehouse_badges_to_beeminder(treehouse.badges, bee)
     elif goal_type == GoalType.POINTS:
-        response = send_points_to_beeminder(treehouse.total_points, bee)
+        response = send_treehouse_points_to_beeminder(treehouse.total_points, bee)
     return response
 
 
